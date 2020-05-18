@@ -8,8 +8,8 @@
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>Enlighten Me</title>
-      <!-- <link rel="icon" type="image/png" href="img/favicon.png" /> -->
+      <title>EnlightenMe</title>
+      <link rel="icon" type="image/png" href="favicon.png" />
       <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -33,22 +33,36 @@
       />
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-      <script type="text/javascript" src="js/some_js.js"></script>
+      <script type="text/javascript" src="index.js"></script>
 
-      <link rel="stylesheet" href="css/some_css.css" />
+      <link rel="stylesheet" href="index.css" />
     </head>
     <body>
       <div class="container">
         <div class="row">
-          <h2>Enlighten Me</h2>
+          <div class="col-1">
+            <img src="favicon.png" width="40px" />
+          </div>
+          <div class="col-11">
+            <h1>EnlightenMe</h1>
+          </div>
         </div>
         <div class="row">
-          <p>Welcome to Enlighten Me!</p>
+          <p>Welcome to EnlightenMe!</p>
           <p>
             This is a simple demo to test the behaviour of the combination of
             the LIFX API with the CO2 Signal API in order to link the color of
             your smart bulb to the carbon intensity of the country or region you
-            select.
+            select.<br /><br />The reason of the name EnlightenMe is because
+            this super simple app can provide us with the necessary information
+            in order to shift the time of usage of our most energy demanding
+            devices. When the carbon intensity of your area is high (light bulb
+            will go <span style="color: red;">red</span>), postpone the use of
+            the washing machine or the charging of your electric vehicle to a
+            time when the carbon intensity is lower (light bulb is
+            <span style="color: green;">greener</span>). I believe that these
+            apparently redundant daily decisions can potentially make a
+            difference on the future of our planet.
           </p>
         </div>
         <div class="row">
@@ -70,53 +84,53 @@
           <div class="col-sm-9">
             <input
               type="text"
-              class="form-control"
+              class="form-control user-input-key"
               id="bulbSelector"
               value="all"
             />
           </div>
         </div>
-        <div class="row">
-          <label for="lifxApiKey" class="col-sm-3 col-form-label"
-            ><b>LIFX API KEY</b></label
-          >
-          <div class="col-sm-9">
-            <input type="password" class="form-control" id="lifxApiKey" />
-          </div>
-        </div>
-        <div class="row">
-          <label for="co2SignalApiKey" class="col-sm-3 col-form-label"
-            ><b>CO2 Signal API KEY</b></label
-          >
-          <div class="col-sm-9">
-            <input type="password" class="form-control" id="co2SignalApiKey" />
-          </div>
-        </div>
         <div class="row" style="padding-top: 20px;">
           <div class="col-sm-3 col-form-label">
-            Enlighten you!
+            Enlighten yourself!
           </div>
           <div class="col-sm-9">
-            <input
-              type="checkbox"
-              class="toggle"
-              data-toggle="toggle"
-              id="toggle-trigger"
-            />
+            <button id="toggle" type="button" class="btn btn-primary disabled">
+              OFF
+            </button>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <div id="connected-alert" class="alert alert-primary" role="alert" style="display: none;">
+            <div
+              id="connected-alert"
+              class="alert alert-primary"
+              role="alert"
+              style="display: none;"
+            >
               Your light bulb is connected to the electricityMap!
             </div>
-            <div id="missing-alert" class="alert alert-danger" role="alert" style="display: none;">
+            <div
+              id="missing-alert"
+              class="alert alert-danger"
+              role="alert"
+              style="display: none;"
+            >
               Please fill out all the fields in order to request connection!
+            </div>
+          </div>
+        </div>
+        <div id="log-alerts" style="display: none;">
+          <div class="row">
+            <h4>Logs</h4>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div id="logs"></div>
             </div>
           </div>
         </div>
       </div>
     </body>
-    </script>
   </html>
 </html>

@@ -1,3 +1,7 @@
+html body {
+  background-color: lightcyan;
+}
+
 .row {
   /*background: #f8f9fa;*/
   margin-top: 20px;
