@@ -107,4 +107,4 @@ venv.bak/
 
 #Pycharm IDE
 .idea
-!/env.py
+env.py
