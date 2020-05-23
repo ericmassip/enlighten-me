@@ -1,4 +1,3 @@
-<img style="float: left;" src="web-app/img/favicon.png"></img>
 # EnlightenMe
 
 A simple tool that turns the [LIFX](https://eu.lifx.com/) light bulb greener when the sun shines or the wind blows 
@@ -27,6 +26,8 @@ every 5 minutes to the web server to extract the data from the electricityMap, p
 update the bulb color. This interaction enables us to follow the evolution of the carbon intensity in
 the region we're interested in in real-time. It also permits to choose amongst all the zones existing in the 
 electricityMap. Furthermore, it lets us choose which bulb/s to update with the carbon intensity information.
+
+![EnlightenMe time evolution](web-app/img/enlighten_me_time_evolution.png)
 
 
 ## Run it yourself locally!
