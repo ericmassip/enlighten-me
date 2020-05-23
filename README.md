@@ -1,5 +1,8 @@
 # EnlightenMe
 
+_(Disclaimer: [This tweet](https://twitter.com/obauma/status/1220624748062953472?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1220624748062953472&ref_url=https%3A%2F%2Fwww.tmrow.com%2Fblog%2F5-climate-myths-that-need-to-die%2F)
+from Olivier Baumann from [Tomorrow](https://www.tmrow.com/) inspired me to start this project)_
+
 A simple tool that turns the [LIFX](https://eu.lifx.com/) light bulb greener when the sun shines or the wind blows 
 (amongst others) in your region, and redder when they don't. Information about the carbon intensity of your region
 is given by the [electricityMap](https://www.electricitymap.org/map). This tool informs us about the right moment 
@@ -18,7 +21,8 @@ The app architecture has basically two elements:
 * A web server built in Python with Flask containerized in a Docker image. This server is in charge of making
 API calls to both the [LIFX API](https://api.developer.lifx.com/) and the [CO2 Signal API](https://docs.co2signal.com/).
 The LIFX API allows us to easily update the status of our lightbulbs with HTTP requests. The CO2 Signal API
-lets us extract information about the carbon intensity (in gCO2eq/kWh) of certain regions in real-time.
+lets us extract information about the carbon intensity (in gCO2eq/kWh) of certain regions in real-time from the
+electricityMap.
 
 * A super lightweight web page built with plain HTML, CSS and Javascript. This web page makes requests iteratively 
 every 5 minutes to the web server to extract the data from the electricityMap, process it and make another request to
@@ -81,7 +85,7 @@ file on your browser.
 ## Contribute
 
 If you modify a bit the app to enable it to work for your specific type of bulb, please feel free to submit a PR, it 
-will be greatly appreciated. Thank you!    
+will be greatly appreciated. Thank you! 
 
 
 
