@@ -69,13 +69,18 @@ function getCarbonIntensity(zone, selector) {
     method: 'GET',
     success: function (result) {
       if (!result.hasOwnProperty('error')) {
-        if (!result['data']['carbonIntensity']) {
-          appendErrorLog(
-            'Carbon intensity not found in response. Zone lost connection?',
-          );
+        if (!result.hasOwnProperty('data') && result.hasOwnProperty('message')) {
+          appendErrorLog(result.message);
           $('#log-alerts').show();
         } else {
-          setBulbState(result, selector);
+          if (!result['data']['carbonIntensity']) {
+            appendErrorLog(
+              'Carbon intensity not found in response. Zone lost connection?',
+            );
+            $('#log-alerts').show();
+          } else {
+            setBulbState(result, selector);
+          }
         }
       } else {
         appendErrorLog(result.error);

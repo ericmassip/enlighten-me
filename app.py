@@ -27,12 +27,7 @@ def get_country_carbon_intensity_data(country_code):
 
     response = requests.get(CO2_SIGNAL_API + f'?countryCode={country_code}', headers=headers)
 
-    try:
-        return response.json()
-
-    except Exception:
-        logging.error(response.json())
-        return 800
+    return response.json()
 
 
 @app.route('/setState', methods=['PUT'])
