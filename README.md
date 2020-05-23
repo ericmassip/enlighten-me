@@ -8,8 +8,7 @@ to charge or use our electrified devices via a smart light bulb.
 You can see a demo of it in action below. On the left side of the screen, there is the bulb, in the middle the **EnlightenMe**
 app and on the right, the electricityMap:
 
-<video src="video.mp4" poster="web-app/img/enlighten_me_base_image.png" width="320" height="200" controls preload></video>
-![EnlightenMe base image](web-app/img/enlighten_me_base_image.png)
+<video src="web-app/img/enlighten-me.mov" poster="web-app/img/enlighten_me_base_image.png" width="320" height="200" controls preload></video>
 
 
 ### Architecture
