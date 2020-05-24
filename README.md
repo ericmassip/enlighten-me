@@ -40,6 +40,7 @@ This version does not need a browser to run, so basically its purpose is to allo
 computer or cloud instance on the background. The behavior is exactly the same as the web app, the only difference is 
 that you must specify the zone or country code via the command line.
 
+![EnlightenMe standalone](web/img/enlighten_me_standalone.png)
 
 ## Run it yourself locally!
 
