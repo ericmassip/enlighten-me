@@ -69,7 +69,10 @@ function getCarbonIntensity(zone, selector) {
     method: 'GET',
     success: function (result) {
       if (!result.hasOwnProperty('error')) {
-        if (!result.hasOwnProperty('data') && result.hasOwnProperty('message')) {
+        if (
+          !result.hasOwnProperty('data') &&
+          result.hasOwnProperty('message')
+        ) {
           appendErrorLog(result.message);
           $('#log-alerts').show();
         } else {

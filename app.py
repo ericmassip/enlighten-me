@@ -1,10 +1,8 @@
-import logging
-
 import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-from env import CO2_SIGNAL_TOKEN, LIFX_API_TOKEN
+from env import CO2_SIGNAL_TOKEN, BULB_API_TOKEN
 
 app = Flask(__name__)
 CORS(app)
@@ -31,11 +29,11 @@ def get_country_carbon_intensity_data(country_code):
 
 
 @app.route('/setState', methods=['PUT'])
-def set_bulb_state():
+def update_bulb_state():
     json_response = request.get_json()
 
     headers = {
-        'Authorization': 'Bearer %s' % LIFX_API_TOKEN,
+        'Authorization': 'Bearer %s' % BULB_API_TOKEN,
     }
 
     requests.put(LIFX_API + f'/lights/{json_response["selector"]}/state', data=json_response["bulb_data"],
