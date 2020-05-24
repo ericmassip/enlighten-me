@@ -98,7 +98,12 @@ file to call the subclass you just created.
 6. Specify the [zone code](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and run the 
 standalone app on your preferred instance:
 ```shell script
-docker run --rm -it -p 5000:5000 enlighten-me python standalone.py <zone-code>
+docker run --rm -it enlighten-me python standalone.py <zone-code>
+```
+
+...or on detached mode:
+```shell script
+docker run -d enlighten-me python standalone.py <zone-code>
 ```
 
 ## Contribute
