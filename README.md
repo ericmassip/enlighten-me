@@ -80,7 +80,7 @@ according to the specifications of your bulb API.
 
 2. Build the Docker image with ```docker build -t enlighten-me:latest .```
 
-3. Run the Flask app locally with ```docker run --rm -p 5000:5000 enlighten-me```
+3. Run the Flask app locally with ```docker run --rm -p 5000:5000 enlighten-me python app.py```
 
 4. Open the [index.html](https://github.com/ericmassip/enlighten-me/blob/master/web-app/index.html) file on your browser.
 
