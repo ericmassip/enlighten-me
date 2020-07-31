@@ -5,8 +5,8 @@ from bulbs.bulb import Bulb
 
 class LIFXBulb(Bulb):
 
-    def __init__(self, url, headers, color, selector='all'):
-        super().__init__(url, headers, color)
+    def __init__(self, url, color, headers, selector='all'):
+        super().__init__(url, color, headers)
         self.selector = selector
 
     def update_bulb_state(self):

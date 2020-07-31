@@ -7,7 +7,8 @@ import requests
 import schedule
 
 from bulbs.lifx_bulb import LIFXBulb
-from env import CO2_SIGNAL_TOKEN, BULB_API_TOKEN
+from bulbs.yeelight_bulb import YeelightBulb
+from env import CO2_SIGNAL_TOKEN, YEELIGHT_BULB_IP, BULB_API_TOKEN
 
 CO2_SIGNAL_API = 'https://api.co2signal.com/v1/latest'
 
@@ -67,13 +68,18 @@ def update_bulb(carbon_color):
     """
     Replace this bulb type with your own!
     """
+    # Comment these lines if you do not want to use a LIFX Bulb
     LIFXBulb(url='https://api.lifx.com/v1',
              headers={'Authorization': 'Bearer %s' % BULB_API_TOKEN},
              color=carbon_color).update_bulb_state()
 
+    # Comment these lines if you do not want to use a Xiaomi Yeelight Bulb
+    YeelightBulb(url=YEELIGHT_BULB_IP,
+                 color=carbon_color).update_bulb_state()
+
 
 update_bulb_job()
-schedule.every(5).minutes.do(update_bulb_job)
+schedule.every(1).minutes.do(update_bulb_job)
 
 while True:
     schedule.run_pending()

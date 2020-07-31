@@ -3,7 +3,7 @@
 _(Disclaimer: [This tweet](https://twitter.com/obauma/status/1220624748062953472?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1220624748062953472&ref_url=https%3A%2F%2Fwww.tmrow.com%2Fblog%2F5-climate-myths-that-need-to-die%2F)
 from Olivier Baumann from [Tomorrow](https://www.tmrow.com/) inspired me to start this project)_
 
-A simple tool that turns the [LIFX](https://eu.lifx.com/) light bulb greener when the sun shines or the wind blows 
+A simple tool that turns a smart light bulb greener when the sun shines or the wind blows 
 (amongst others) in your region, and redder when they don't. Information about the carbon intensity of your region
 is given by the [electricityMap](https://www.electricitymap.org/map). This tool informs us about the right moment 
 to charge or use our electrified devices via a smart light bulb.
@@ -17,7 +17,8 @@ app and on the right, the electricityMap. (Click on the image to play it on Yout
 ### Architecture
 
 #### Web App
-The web app architecture has basically two elements:
+_For now, the web app can only be used with a [LIFX](https://eu.lifx.com/) light bulb._ The web app architecture 
+has basically two elements:
 
 * A web server built in Python with Flask containerized in a Docker image. This server is in charge of making
 API calls to both the [LIFX API](https://api.developer.lifx.com/) and the [CO2 Signal API](https://docs.co2signal.com/).
@@ -35,6 +36,9 @@ electricityMap. Furthermore, it lets us choose which bulb/s to update with the c
 
 
 #### Standalone App
+_For now, the standalone application can be used with a [LIFX](https://eu.lifx.com/) or a [Xiaomi Yeelight](https://www.yeelight.com/en_US/product/lemon2-color) 
+light bulb._ 
+
 The standalone application is a lightweight version of EnlightenMe written all in Python to run from the command line. 
 This version does not need a browser to run, so basically its purpose is to allow for a quick deployment on a local 
 computer or cloud instance on the background. The behavior is exactly the same as the web app, the only difference is 
@@ -52,8 +56,13 @@ git clone https://github.com/ericmassip/enlighten-me.git
 
 ### The bulb
 
-First of all, you'll need a LIFX light bulb. They are a bit pricey, but their API is really good and they work very well.
+First of all, you'll need a smart light bulb. For now, you have two options:
+
+* Your first option is a LIFX light bulb, they are a bit pricey, but their API is really good and they work very well. 
 You can order them online [here](https://eu.lifx.com/).
+
+* Your second option is a Xiaomi Yeelight light bulb, they are half the price of a LIFX. You can buy them from Amazon.
+Although, with this type of bulb you won't be able to use the web app yet, just the standalone version.
 
 If you have a different type of smart bulb, don't worry, you can find guidelines of how to modify the current code to 
 accept your bulb's specifications below.
@@ -72,6 +81,16 @@ BULB_API_TOKEN = '<YOUR-BULB-TOKEN-HERE>'
 CO2_SIGNAL_TOKEN = '<YOUR-CO2-SIGNAL-API-KEY-HERE>'
 ```
 
+* In case you're using a Xiaomi Yeelight, you won't need an API key to make HTTP requests. You'll just need to find the
+IP of your bulb while connected to your local Wi-Fi network. There is an awesome python package that handles this bulb
+IP discovery, plus all other interactions with the bulb, called Yeelight Python. You can read the docs 
+[here](https://yeelight.readthedocs.io/en/latest/), it is very simple to find the IP. Once you have it, place it in the
+[env.py](https://github.com/ericmassip/enlighten-me/blob/master/env.py) file.
+
+```python
+YEELIGHT_BULB_IP = '<YOUR-YEELIGHT-BULB-IP-HERE>'
+```
+
 ### Run the web app
 
 1. If you have a LIFX light bulb, go to step 2. If you don't, modify the url and headers of the HTTP request called in the 
@@ -86,13 +105,15 @@ according to the specifications of your bulb API.
 
 ### Run the standalone app
 
-1. If you have a LIFX light bulb, go to step 5 directly. If you don't, follow these steps:
+1. If you have a LIFX or Xiaomi Yeelight light bulb, go to step 4 directly. If you don't, follow these steps:
 
 2. Create a new subclass of [Bulb](https://github.com/ericmassip/enlighten-me/blob/master/bulbs/bulb.py). See 
 [LIFXBulb.py](https://github.com/ericmassip/enlighten-me/blob/master/bulbs/lifx_bulb.py) for an example.
 3. Implement the methods *update_bulb_state* and *_get_bulb_data* to match your bulb specifications.
+
 4. Edit the method *update_bulb* in the [standalone.py](https://github.com/ericmassip/enlighten-me/blob/master/bulbs/standalone.py)
-file to call the subclass you just created.
+file to call the LIFX, Xiaomi Yeelight or the subclass you just created. For the first two bulb options, you just have
+to uncomment the one you're interested in.
 
 5. Build the Docker image with ```docker build -t enlighten-me:latest .```
 

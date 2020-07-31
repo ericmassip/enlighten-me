@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 
 class Bulb(ABC):
 
-    def __init__(self, url, headers, color):
+    def __init__(self, url, color, headers):
         self.url = url
-        self.headers = headers
         self.color = color
+        self.headers = headers
 
     @abstractmethod
     def update_bulb_state(self):
