@@ -46,7 +46,7 @@ that you must specify the zone or country code via the command line.
 
 ![EnlightenMe standalone](web/img/enlighten_me_standalone.png)
 
-## Run it yourself locally!
+## Run it yourself!
 
 Clone the repository:
 
@@ -99,7 +99,7 @@ according to the specifications of your bulb API.
 
 2. Build the Docker image with ```docker build -t enlighten-me:latest .```
 
-3. Run the Flask app locally with ```docker run --rm -p 5000:5000 enlighten-me```
+3. Run the Flask app locally with ```docker run --rm -p 5000:5000 enlighten-me python app.py```
 
 4. Open the [index.html](https://github.com/ericmassip/enlighten-me/blob/master/web-app/index.html) file on your browser.
 
